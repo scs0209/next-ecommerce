@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="flex items-center justify-between h-full md:hidden">
         {/* Mobile */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="logo" width={24} height={24} />
+          <Image src="/logo.png" alt="mobile logo" width={24} height={24} />
           <div className="text-2xl tracking-wide">ModuBuy</div>
         </Link>
         <Menu />
