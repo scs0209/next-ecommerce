@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const ProductList = () => {
   return (
-    <section className="flex gap-x-8 gap-y-16 justify-between flex-wrap">
+    <section className="flex gap-x-8 gap-y-16 justify-between flex-wrap mt-12">
       <Link
         href="/test"
         className="w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
