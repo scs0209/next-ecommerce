@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <footer className="py-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 bg-gray-100 text-sm mt-24">
       {/* TOP */}
-      <div className="flex flex-col md:flex-row justify-between gap-24">
+      <section className="flex flex-col md:flex-row justify-between gap-24">
         {/* LEFT */}
-        <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
+        <article className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
           <Link href="/">
             <div className="text-2xl tracking-wide">ModuBuy</div>
           </Link>
@@ -27,9 +27,9 @@ const Footer = () => {
               />
             ))}
           </div>
-        </div>
+        </article>
         {/* CENTER */}
-        <div className="hidden lg:flex w-1/2 justify-between">
+        <nav className="hidden lg:flex w-1/2 justify-between">
           {footerLinks.map((section) => (
             <div key={section.title} className="flex flex-col justify-between">
               <h1 className="font-medium text-lg">{section.title}</h1>
@@ -42,9 +42,9 @@ const Footer = () => {
               </ul>
             </div>
           ))}
-        </div>
+        </nav>
         {/* RIGHT */}
-        <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
+        <article className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
           <h1 className="font-medium text-lg">SUBSCRIBE</h1>
           <p>
             Be the first to get the latest news about trends, and much more!
@@ -69,8 +69,8 @@ const Footer = () => {
               />
             ))}
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
       {/* BOTTOM */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 mt-16">
         <div>© 2024 SCS's Shop</div>
