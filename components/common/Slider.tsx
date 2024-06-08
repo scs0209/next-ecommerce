@@ -18,13 +18,13 @@ const Slider = () => {
   // }, []);
 
   return (
-    <div className="h-[calc(100vh-80px)] overflow-hidden">
+    <section className="h-[calc(100vh-80px)] overflow-hidden">
       <div
         className="w-max h-full flex transition-all ease-in-out duration-1000"
         style={{ transform: `translateX(-${current * 100}vw)` }}
       >
         {slideItems.map((slide) => (
-          <div
+          <article
             className={`${slide.bg} w-screen h-full flex flex-col gap-16 xl:flex-row`}
             key={slide.id}
           >
@@ -52,25 +52,26 @@ const Slider = () => {
                 className="object-cover"
               />
             </div>
-          </div>
+          </article>
         ))}
       </div>
       <div className="absolute m-auto left-1/2 bottom-8 flex gap-8">
         {slideItems.map((slide, index) => (
-          <div
+          <button
             className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center ${
               current === index ? "scale-150" : ""
             }`}
             key={slide.id}
             onClick={() => setCurrent(index)}
+            aria-label={`Go to slide ${index + 1}`}
           >
             {current === index && (
               <div className="w-[6px] h-[6px] rounded-full bg-gray-600"></div>
             )}
-          </div>
+          </button>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
