@@ -18,6 +18,7 @@ const config: Config = {
       },
       colors: {
         counter: "#02BE61",
+        select: "#EBEDED",
       },
     },
   },
