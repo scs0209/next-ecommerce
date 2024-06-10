@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { wixClientServer } from "@/lib/wixClientServer";
-import { products } from "@wix/stores";
 import DOMPurify from "isomorphic-dompurify";
+import { products } from "@wix/stores";
+import { wixClientServer } from "@/lib/wixClientServer";
+import Pagination from "./Pagination";
 
-const PRODUCT_PER_PAGE = 20;
+const PRODUCT_PER_PAGE = 8;
 
 const ProductList = async ({
   categoryId,
@@ -18,16 +19,40 @@ const ProductList = async ({
 }) => {
   const wixClient = await wixClientServer();
 
-  const res = await wixClient.products
+  const productQuery = await wixClient.products
     .queryProducts()
+    .startsWith("name", searchParams?.name || "")
     .eq("collectionIds", categoryId)
+    .hasSome("productType", [searchParams?.type || "physical", "digital"])
+    .gt("priceData.price", searchParams?.min || 0)
+    .lt("priceData.price", searchParams?.max || 999999)
     .limit(limit || PRODUCT_PER_PAGE)
-    .find();
+    .skip(
+      searchParams?.page
+        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
+        : 0
+    );
 
-  console.log(res);
+  // .find()
+
+  if (searchParams?.sort) {
+    const [sortType, sortBy] = searchParams.sort.split(" ");
+
+    if (sortType === "asc") {
+      productQuery.ascending(sortBy);
+    }
+
+    if (sortType === "desc") {
+      productQuery.descending(sortBy);
+    }
+  }
+
+  const res = await productQuery.find();
+  // console.log(res);
+  // console.log(JSON.stringify(res, null, 2));
 
   return (
-    <section className="flex gap-x-8 gap-y-16 justify-between flex-wrap mt-12">
+    <section className="flex flex-wrap justify-between mt-12 gap-x-8 gap-y-16">
       {res.items.map((product: products.Product) => (
         <Link
           key={product._id}
@@ -40,7 +65,7 @@ const ProductList = async ({
               alt="product image"
               sizes="25vw"
               fill
-              className="absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500"
+              className="absolute z-10 object-cover transition-opacity duration-500 rounded-md hover:opacity-0 easy"
             />
             {product.media?.items && (
               <Image
@@ -68,15 +93,16 @@ const ProductList = async ({
               }}
             />
           )}
-          <button className="rounded-2xl ring-1 ring-counter text-counter py-2 px-4 text-xs hover:bg-counter w-max hover:text-white">
+          <button className="px-4 py-2 text-xs rounded-2xl ring-1 ring-counter text-counter hover:bg-counter w-max hover:text-white">
             Add To Cart
           </button>
         </Link>
       ))}
-      <Link
-        href="/test"
-        className="w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
-      ></Link>
+      <Pagination
+        currentPage={res.currentPage || 0}
+        hasPrev={res.hasPrev()}
+        hasNext={res.hasNext()}
+      />
     </section>
   );
 };

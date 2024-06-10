@@ -59,7 +59,7 @@ const CustomizeProducts = ({
 
               return option.name === "색상" ? (
                 <li
-                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative"
+                  className="relative w-8 h-8 rounded-full ring-1 ring-gray-300"
                   style={{
                     backgroundColor: choice.value,
                     cursor: disabled ? "not-allowed" : "pointer",
@@ -67,7 +67,7 @@ const CustomizeProducts = ({
                   onClick={clickHandler}
                 >
                   {selected && (
-                    <div className="absolute w-10 h-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                    <div className="absolute w-10 h-10 transform -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 top-1/2 left-1/2" />
                   )}
                   {disabled && (
                     <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
@@ -75,7 +75,7 @@ const CustomizeProducts = ({
                 </li>
               ) : (
                 <li
-                  className="ring-1 ring-counter text-counter rounded-md py-1 px-4 text-sm cursor-pointer"
+                  className="px-4 py-1 text-sm rounded-md cursor-pointer ring-1 ring-counter text-counter"
                   style={{
                     backgroundColor: selected
                       ? "#02BE61"
@@ -89,17 +89,6 @@ const CustomizeProducts = ({
                 >
                   {choice.description}
                 </li>
-                // <div
-                //   className=""
-                //   key={choice.value}
-                //   onClick={() =>
-                //     handleOPtionsSelect(option.name!, choice.description!)
-                //   }
-                // >
-                //   {choice.description}
-                //   {disabled && "disabled"}
-                //   {selected && "selected"}
-                // </div>
               );
             })}
           </ul>
@@ -108,11 +97,11 @@ const CustomizeProducts = ({
       {/* COLOR */}
       {/* 
           <ul className="flex items-center gap-3">
-            <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-red-500">
-              <div className="absolute w-10 h-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            <li className="relative w-8 h-8 bg-red-500 rounded-full cursor-pointer ring-1 ring-gray-300">
+              <div className="absolute w-10 h-10 transform -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 top-1/2 left-1/2" />
             </li>
-            <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-blue-500"></li>
-            <li className="w-8 h-8 rounded-full cursor-not-allowed ring-1 ring-gray-300 relative bg-green-500">
+            <li className="relative w-8 h-8 bg-blue-500 rounded-full cursor-pointer ring-1 ring-gray-300"></li>
+            <li className="relative w-8 h-8 bg-green-500 rounded-full cursor-not-allowed ring-1 ring-gray-300">
               <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             </li>
           </ul> */}
@@ -120,13 +109,13 @@ const CustomizeProducts = ({
       {/* OTHERS */}
       {/* <h4 className="font-medium">Choose a size</h4>
       <ul className="flex items-center gap-3">
-        <li className="ring-1 ring-counter text-counter rounded-md py-1 px-4 text-sm cursor-pointer">
+        <li className="px-4 py-1 text-sm rounded-md cursor-pointer ring-1 ring-counter text-counter">
           Small
         </li>
-        <li className="ring-1 ring-counter text-white bg-counter rounded-md py-1 px-4 text-sm cursor-pointer">
+        <li className="px-4 py-1 text-sm text-white rounded-md cursor-pointer ring-1 ring-counter bg-counter">
           Medium
         </li>
-        <li className="ring-1 ring-green-200 text-white bg-green-200  rounded-md py-1 px-4 text-sm cursor-not-allowed">
+        <li className="px-4 py-1 text-sm text-white bg-green-200 rounded-md cursor-not-allowed ring-1 ring-green-200">
           Large
         </li>
       </ul> */}
