@@ -11,6 +11,7 @@
     "test:watch": "jest --watchAll"
   },
   "dependencies": {
+    "@wix/ecom": "^1.0.594",
     "@wix/sdk": "^1.9.8",
     "@wix/stores": "^1.0.154",
     "isomorphic-dompurify": "^2.12.0",

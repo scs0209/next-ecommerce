@@ -1,7 +1,8 @@
 "use client";
 
+import { useWixClient } from "@/hooks/useWixClient";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 /* 
   <dialog>: 모달 대화 상자를 나타내는 태그.
@@ -13,6 +14,18 @@ import React from "react";
 
 const CartModal = () => {
   const cartItems = true;
+
+  const wixClient = useWixClient();
+
+  useEffect(() => {
+    const getCart = async () => {
+      const response = await wixClient.currentCart.getCurrentCart();
+
+      console.log(response);
+    };
+
+    getCart();
+  }, [wixClient]);
 
   return (
     <dialog
